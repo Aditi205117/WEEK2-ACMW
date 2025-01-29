@@ -1,0 +1,48 @@
+import java.util.Scanner;
+public class Missing
+{
+    // Function to find the missing and repeating numbers
+    public static void findMissingAndRepeating(int[] arr, int n)
+{
+        long expectedSum = (long) n * (n + 1) / 2; // Sum of first N natural numbers
+        long expectedSumOfSquares = (long) n * (n + 1) * (2 * n + 1) / 6; // Sum of squares of first N natural numbers
+        long actualSum = 0, actualSumOfSquares = 0;
+        // Calculate the actual sum and sum of squares from the array
+        for (int i = 0; i < n; i++)
+{
+            actualSum += arr[i];
+            actualSumOfSquares += (long) arr[i] * arr[i];
+        }
+        // Calculate the differences
+        long sumDiff = actualSum - expectedSum; // A - B
+        long sumOfSquaresDiff = actualSumOfSquares - expectedSumOfSquares; // A^2 - B^2
+        long A = (sumOfSquaresDiff - sumDiff * sumDiff) / (2 * sumDiff);
+        long B = A + sumDiff;
+        System.out.println("Repeating number: " + A);
+        System.out.println("Missing number: " + B);
+    }
+
+    public static void main(String[] args) 
+{
+        Scanner scanner = new Scanner(System.in);
+        // Input size of the array (N elements, with one element repeating and one missing)
+        System.out.print("Enter the size of the array (N): ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the elements of the array (values between 1 and N):");
+        for (int i = 0; i < n; i++)
+{
+            arr[i] = scanner.nextInt();
+        }
+        // Find and print the missing and repeating numbers
+        findMissingAndRepeating(arr, n);
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
