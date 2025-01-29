@@ -1,0 +1,74 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class MergeSortedArrays
+{
+    // Function to swap two elements
+    static void swap(int[] arr1, int[] arr2, int i, int j)
+{
+        int temp = arr1[i];
+        arr1[i] = arr2[j];
+        arr2[j] = temp;
+    }
+
+    // Function to merge and modify arr1 and arr2
+    static void mergeSortedArrays(int[] arr1, int[] arr2, int n, int m) 
+{
+        int i = n - 1, j = 0;
+        // Swap elements to ensure smallest in arr1 and largest in arr2
+        while (i >= 0 && j < m && arr1[i] > arr2[j])
+{
+            swap(arr1, arr2, i, j);
+            i--;
+            j++;
+        }
+
+        // Sort both arrays after swapping
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+    }
+    // Function to print an array
+    static void printArray(int[] arr)
+{
+        for (int num : arr)
+{
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) 
+{
+        Scanner sc = new Scanner(System.in);
+        // Input size of arrays
+        System.out.print("Enter size of arr1: ");
+        int n = sc.nextInt();
+        System.out.print("Enter size of arr2: ");
+        int m = sc.nextInt();
+        int[] arr1 = new int[n];
+        int[] arr2 = new int[m];
+        // Input elements of arr1
+        System.out.println("Enter " + n + " sorted elements of arr1: ");
+        for (int i = 0; i < n; i++) 
+{
+            arr1[i] = sc.nextInt();
+        }
+
+        // Input elements of arr2
+        System.out.println("Enter " + m + " sorted elements of arr2: ");
+        for (int i = 0; i < m; i++) 
+{
+            arr2[i] = sc.nextInt();
+        }
+
+        // Merge and modify arrays
+        mergeSortedArrays(arr1, arr2, n, m);
+        // Output modified arrays
+        System.out.print("Modified arr1: ");
+        printArray(arr1);
+        System.out.print("Modified arr2: ");
+        printArray(arr2);
+        sc.close();
+    }
+}
+
+
